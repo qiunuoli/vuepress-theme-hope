@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.0-beta.18](https://github.com/Mister-Hope/vuepress-theme-hope/compare/v0.1.0-beta.17...v0.1.0-beta.18) (2019-11-23)
+
+### Features
+
+* add baselang option ([5a8d3b4](https://github.com/Mister-Hope/vuepress-theme-hope/commit/5a8d3b49e2a5be69ac4bfc76901fc98123520a46))
+
 ## [0.1.0-beta.17](https://github.com/Mister-Hope/vuepress-theme-hope/compare/v0.1.0-beta.16...v0.1.0-beta.17) (2019-11-23)
 
 ### Bug Fixes
