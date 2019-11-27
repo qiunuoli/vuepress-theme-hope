@@ -4,7 +4,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-10-20 19:02:12
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-11-08 17:24:55
+ * @LastEditTime: 2019-11-24 00:03:40
  * @Description: This file is edited from 'deep-merge'
  */
 
@@ -34,7 +34,7 @@ const emptyTarget = value => (Array.isArray(value) ? [] : {});
 /** 克隆 */
 const clone = (value, options) =>
   options.clone !== false && options.isMergeableObject(value)
-    ? deepmerge(emptyTarget(value), value, options)
+    ? merge(emptyTarget(value), value, options)
     : value;
 
 /** 默认函数合并函数 */
@@ -42,10 +42,10 @@ const arrayMerge = (target, source, options) =>
   target.concat(source).map(element => clone(element, options));
 
 const getMergeFunction = (key, options) => {
-  if (!options.customMerge) return deepmerge;
+  if (!options.customMerge) return merge;
 
   const customMerge = options.customMerge(key);
-  return typeof customMerge === 'function' ? customMerge : deepmerge;
+  return typeof customMerge === 'function' ? customMerge : merge;
 };
 
 /** 获得 Symbol Key */
@@ -106,7 +106,7 @@ const mergeObject = (target, source, options) => {
 };
 
 /** 深度合并 */
-const deepmerge = (target, source, options) => {
+const merge = (target, source, options) => {
   const finalOptions = {
     arrayMerge,
     isMergeableObject,
@@ -127,13 +127,15 @@ const deepmerge = (target, source, options) => {
 };
 
 /** 全部合并 */
-deepmerge.all = (array, options) => {
+const all = (array, options) => {
   if (!Array.isArray(array))
     throw new Error('First argument should be an array');
 
-  return array.reduce((prev, next) => deepmerge(prev, next, options), {});
+  return array.reduce((prev, next) => merge(prev, next, options), {});
 };
 
-deepmerge.isMergeableObject = isMergeableObject;
-
-module.exports = deepmerge;
+module.exports = {
+  merge,
+  all,
+  isMergeableObject
+};

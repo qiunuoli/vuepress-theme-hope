@@ -1,6 +1,6 @@
-const merge = require('../src/deepmerge');
+const { deepmerge } = require('../src');
 const test = require('tape');
-const { isMergeableObject } = merge;
+const { merge, isMergeableObject } = deepmerge;
 
 test('merging objects with own __proto__', tape => {
   const user = {};

@@ -1,4 +1,6 @@
-const merge = require('../src/deepmerge');
+const {
+  deepmerge: { merge }
+} = require('../src');
 const test = require('tape');
 
 test('add keys in target that do not exist at the root', tape => {
@@ -424,7 +426,7 @@ test('should work on array with null in it', tape => {
   tape.end();
 });
 
-test('should clone array\'s element if it is object', tape => {
+test("should clone array's element if it is object", tape => {
   const a = { key: 'yup' };
   const target = [];
   const source = [a];
