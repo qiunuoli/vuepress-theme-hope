@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-07-05 00:14:26
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-11-13 14:47:12
+ * @LastEditTime: 2019-11-27 20:39:33
  * @Description: Vuepress配置
  */
 
@@ -11,10 +11,10 @@ module.exports = {
   base: process.env.VuePress_BASE || '/',
 
   /** 网站标题 */
-  title: '评论插件',
+  title: 'vuepress-theme-hope',
 
-  /** 网站在该语言下的描述 */
-  description: 'Vuepress 的 评论插件',
+  /** 网站描述 */
+  description: '一个轻量的 vuepress 主题',
 
   /** 生成网站头部的标签 */
   head: [
@@ -58,8 +58,15 @@ module.exports = {
     ['meta', { name: 'msapplication-TileColor', content: '#ffffff' }]
   ],
 
+  // host: '0.0.0.0',
+  // port:8080,
+  // temp: './dist/temp',
+
   /** 构建文件输出目录 */
-  dest: './dist',
+  dest: './dist/theme',
+
+  /** 根目录语言 */
+  baeLang: 'zh-CN',
 
   /** 多语言配置选项
    *
@@ -67,26 +74,28 @@ module.exports = {
    * 作为特例，默认语言可以使用 '/' 作为其路径。
    */
   locales: {
-    /** 默认语言 */
-    '/': {
-      /** 设置为中文 */
-      lang: 'zh-CN'
-    },
     /** 英文设置 */
     '/en/': {
-      /** 设置为英文 */
-      lang: 'en-US', // 将会被设置为 <html> 的 lang 属性
-
       /** 网站在该语言下的标题 */
-      title: 'Comment Plugin',
+      title: 'vuepress-theme-hope',
 
       /** 网站在该语言下的描述 */
-      description: 'Comment Plugin for Vuepress'
+      description: 'A light vuepress theme'
     }
   },
 
+  extraWatchFiles: [
+    '.vuepress/config/navBar.js',
+    '.vuepress/config/sideBar.js',
+    '.vuepress/config/theme.js'
+  ],
+
+  /** 使用的主题 */
   theme: 'hope',
 
   /** 主题配置 */
-  themeConfig: require('./themeConfig')
+  themeConfig: require('./config/theme'),
+
+  /** 是否只支持常青树浏览器 */
+  evergreen: true // 设置为true后将不会兼容IE等老旧浏览器
 };

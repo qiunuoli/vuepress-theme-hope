@@ -135,14 +135,15 @@ color-mode($themecolor, $colorName)
         color lighten($themecolor, 30%)
 
     // 主题选择按钮
-    .color-picker .color-button .iconfont
+    .color-picker .color-button .skin-icon
       &:hover, &.select
         fontcolor()
 
     // 全屏按钮
     .fullscreen-wrapper
-      .vuepress-fullScreen:hover, .vuepress-cacelFullScreen
-        fontcolor()
+      .icon
+        .fullScreen:hover, .cacelFullScreen
+          fontcolor()
 
     .page
       // 评论按钮

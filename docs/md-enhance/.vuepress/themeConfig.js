@@ -16,13 +16,16 @@ module.exports = {
     '/': ['', 'guide/', 'api']
   },
 
+  /** 默认作者 */
+  author: 'Mr.Hope',
+
+  /** 图标前缀 */
+  iconPrefix: 'vuepress-',
+
   /** Markdown设置 */
   markdown: {
     enableAll: true
   },
-
-  /** 图标前缀 */
-  iconPrefix: 'vuepress-',
 
   /** 语言设置 */
   locales: {

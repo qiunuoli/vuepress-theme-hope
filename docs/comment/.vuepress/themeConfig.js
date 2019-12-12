@@ -59,6 +59,13 @@ module.exports = {
     enableAll: true
   },
 
+  /** 评论设置 */
+  comment: {
+    type: 'valine',
+    appId: 'GG2VSnGiz09Rx18y2OUzdaHS-gzGzoHsz',
+    appKey: 'fBf2dptTBHxNqALKrzUlBXeB'
+  },
+
   /** 语言设置 */
   locales: {
     /** 英文设置 */
@@ -118,5 +125,5 @@ module.exports = {
   repo: 'https://github.com/mister-hope/vuepress-theme-hope',
 
   /** 文档目录 */
-  docsDir: 'docs/comment/src'
+  docsDir: 'docs/comment'
 };

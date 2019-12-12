@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-09-19 18:12:20
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-11-11 17:54:05
+ * @LastEditTime: 2019-11-27 20:24:08
  * @Description: 返回顶部组件
 -->
 <template>
@@ -22,7 +22,6 @@
         26.483-26.483 26.483s-26.483-12.359-26.483-26.483v-271.89l-105.93 104.166c-12.36 12.359-33.546 12.359-45.904
         0-12.359-12.359-12.359-31.78 0-45.903l155.365-151.835c7.062-7.062 14.124-8.827 22.952-8.827s15.89 3.53 22.952
         8.827L683.255 527.89c12.359 15.89 12.359 35.31 0 47.669z"
-        fill="currentcolor"
         p-id="3667"
       />
     </svg>
@@ -90,6 +89,7 @@ export default {
   border-radius 50%
   overflow hidden
   z-index 1
+  fill currentcolor
 
 .back-to-top:hover
   color lighten($accentColor, 30%)

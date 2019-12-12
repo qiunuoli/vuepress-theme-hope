@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-10-08 20:45:09
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-11-07 13:07:10
+ * @LastEditTime: 2019-11-27 22:05:41
  * @Description: 主题颜色
 -->
 <template>
@@ -31,7 +31,6 @@
           86.4c-22.4 19.2-390.4 518.4-390.4 518.4-22.4 28.8-12.8 76.8 22.4 99.2l9.6 6.4c35.2 22.4
           80 12.8 99.2-25.6 0 0 6.4-12.8 9.6-19.2 54.4-105.6 275.2-524.8 288-553.6
           6.4-19.2-3.2-32-19.2-32C777.6 76.8 771.2 80 764.8 86.4z"
-          fill="currentColor"
         />
       </svg>
     </span>
@@ -91,6 +90,7 @@ export default {
       width 1.4em
       height 1.4em
       color #aaa
+      fill currentcolor
 
       &:hover, &.select
         color $accentColor

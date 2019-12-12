@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-09-20 19:39:33
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-11-13 18:26:59
+ * @LastEditTime: 2019-11-27 20:53:32
  * @Description: 主题配置文件
  */
 const navBarConfig = require('./navBar');
@@ -17,9 +17,6 @@ module.exports = {
 
   /** 侧边栏配置 */
   sidebar: sideBarConfig.zh,
-
-  /** 禁用路径导航 */
-  breadcrumb: false,
 
   /** 默认作者 */
   author: 'Mr.Hope',
@@ -61,11 +58,5 @@ module.exports = {
   repo: 'https://github.com/mister-hope/vuepress-theme-hope',
 
   /** 文档目录 */
-  docsDir: 'src',
-
-  /** 文档分支 */
-  docsBranch: 'doc',
-
-  /** 自定义仓库链接文字 */
-  repoLabel: 'Github'
+  docsDir: 'docs/theme'
 };
