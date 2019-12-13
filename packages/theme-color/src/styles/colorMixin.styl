@@ -9,19 +9,14 @@ color-mode($themecolor, $colorName)
 
   .theme-{$colorName}
     // 页面内容
-    {$contentClass}:not(.custom)
-      a
-        fontcolor()
+    a
+      fontcolor()
 
-      p a code
-        fontcolor()
+    p a code
+      fontcolor()
 
-      blockquote
-        bordercolor()
-
-      // 代码
-      code .token.inserted
-        fontcolor()
+    blockquote
+      bordercolor()
 
     @media (min-width: $MQMobile)
       .nav-item > a:not(.external)
@@ -144,6 +139,12 @@ color-mode($themecolor, $colorName)
       .icon
         .fullScreen:hover, .cacelFullScreen
           fontcolor()
+
+    // 提示框
+    .custom-block
+      &.tip, &.warning, &.danger
+        a
+          color $themecolor
 
     .page
       // 评论按钮
