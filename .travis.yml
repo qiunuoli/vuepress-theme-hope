@@ -26,7 +26,7 @@ jobs:
       name: "Test or Deploy Comment Docs"
       script:
         - yarn run comment-docs:build
-      before_deploy: echo comment.mrhope.site >> docs/comment/dist/CNAME
+      before_deploy: echo comment.mrhope.site >> docs/dist/comment/CNAME
       deploy:
         provider: pages
         skip-cleanup: true
@@ -39,7 +39,7 @@ jobs:
       name: "Test or Deploy Markdown Enhance Docs"
       script:
         - yarn run md-enhance-docs:build
-      before_deploy: echo vuepress-md.mrhope.site >> docs/md-enhance/dist/CNAME
+      before_deploy: echo vuepress-md.mrhope.site >> docs/dist/md-enhance/CNAME
       deploy:
         provider: pages
         skip-cleanup: true
@@ -52,7 +52,7 @@ jobs:
       name: "Test or Deploy Offical Docs"
       script:
         - yarn run theme:build
-      before_deploy: echo vuepress-theme.mrhope.site >> docs/theme/dist/CNAME
+      before_deploy: echo vuepress-theme.mrhope.site >> docs/dist/theme/CNAME
       deploy:
         provider: pages
         skip-cleanup: true
