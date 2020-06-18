@@ -4,7 +4,7 @@ import {
   HopeNavBarConfig,
   HopeSideBarConfig,
 } from "@mr-hope/vuepress-shared-utils";
-import { DefaultThemeConfig, SiteConfig } from "@mr-hope/vuepress-types";
+import { AlgoliaOption, SiteConfig } from "@mr-hope/vuepress-types";
 import { MarkdownEnhanceOption } from "vuepress-plugin-md-enhance/types";
 import { PWAOptions } from "@mr-hope/vuepress-plugin-pwa";
 import { SeoOptions } from "@mr-hope/vuepress-plugin-seo";
@@ -265,21 +265,19 @@ export interface ProjectOptions {
 }
 
 /** vuepress-theme-hope 主题配置 */
-export interface HopeThemeConfig extends DefaultThemeConfig {
-  lastUpdated?: never;
-  editLinkText?: never;
+export interface HopeThemeConfig {
+  /**
+   * 导航栏 Logo，应为绝对路径
+   *
+   * Navbar logo, should be an absolute path
+   */
+  logo?: string;
   /**
    * 暗黑模式下 logo
    *
    * Logo Image under darkmode
    */
   darkLogo?: string;
-  /**
-   * 多语言配置
-   *
-   * i18n config
-   */
-  locales?: Record<string, HopeLangLocalesConfig>;
   /**
    * 根目录对应的语言
    *
@@ -298,12 +296,59 @@ export interface HopeThemeConfig extends DefaultThemeConfig {
    * Navbar configuration
    */
   nav?: HopeNavBarConfig;
+  /** 是否禁用导航栏 TODO: remove */
+  navbar?: boolean;
   /**
    * 侧边栏配置
    *
    * Sidebar configuration
    */
   sidebar?: HopeSideBarConfig;
+  /** 侧边栏嵌套的标题深度 */
+  sidebarDepth?: number;
+  /** 显示所有页面的标题链接 */
+  displayAllHeaders?: boolean;
+  /** 是否自动更新嵌套的标题链接和 URL 中的 Hash 值 */
+  activeHeaderLinks?: boolean;
+  /** 是否启用默认的搜索框 */
+  search?: boolean;
+  /** 默认搜索框显示的搜索结果数量 */
+  searchMaxSuggestions?: number;
+  /** Algolia 搜索配置 */
+  algolia?: AlgoliaOption;
+  /** 所有页面的 下一篇 链接 */
+  nextLinks?: boolean;
+  /** 所有页面的 上一篇 链接 */
+  prevLinks?: boolean;
+  /** 项目仓库地址 */
+  repo?: string;
+  /** 仓库标签文字 */
+  repoLabel?: string;
+  /** 文档所属仓库 */
+  docsRepo?: string;
+  /** 文档所属文件夹 */
+  docsDir?: string;
+  /** 文档所属分支 */
+  docsBranch?: string;
+  /** 显示编辑本页链接 */
+  editLinks?: boolean;
+  /** 编辑本页文字 */
+  editLinkText?: string;
+
+  /**
+   * 是否开启最后更新日期插件
+   *
+   * Whether enable lastUpdate plugin
+   */
+  lastUpdated?: boolean;
+
+  /**
+   * 多语言配置
+   *
+   * i18n config
+   */
+  locales?: Record<string, HopeLangLocalesConfig>;
+
   /**
    * 深色模式支持选项:
    * - `'auto-switch'`: "关闭 | 自动 | 打开" 的三段式开关 (默认)

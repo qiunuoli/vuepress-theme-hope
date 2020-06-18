@@ -1,4 +1,4 @@
-import { I18nConfig } from "./config";
+import { I18nConfig, ThemeConfig } from "./config";
 
 /** 导航栏配置项 */
 export interface NavBarConfigItem {
@@ -65,8 +65,7 @@ export interface DefaultThemeLangI18nConfig extends I18nConfig {
   editLinkText?: string; // 默认为 "Edit this page"
 }
 
-// export interface DefaultThemeConfig extends ThemeConfig {
-export interface DefaultThemeConfig {
+export interface DefaultThemeConfig extends ThemeConfig {
   /** 导航栏 Logo，应为绝对路径 */
   logo?: string;
   /** 导航栏链接 */

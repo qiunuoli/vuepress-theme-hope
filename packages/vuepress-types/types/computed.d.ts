@@ -1,8 +1,6 @@
-import { HopeThemeConfig } from "vuepress-theme-hope";
-import { I18nConfig } from "./config";
+import { I18nConfig, ThemeConfig } from "./config";
 import { SiteData } from "./context";
 import { Page, PageComputed, PageFrontmatter } from "./page";
-import VueRouter, { Route } from "vue-router";
 
 declare module "vue/types/vue" {
   export interface Vue {
@@ -19,22 +17,18 @@ declare module "vue/types/vue" {
     // context.getSiteData()
     $site: SiteData;
     $siteTitle: string;
-    $themeConfig: HopeThemeConfig;
+    $themeConfig: ThemeConfig;
     $themeLocaleConfig: I18nConfig;
     $title: string;
 
     // injected in client/app.js
     $withBase: (path: string) => string;
-
-    // vue-router
-    $router: VueRouter;
-    $route: Route;
   }
 }
 
 export interface ClientComputedMixin {
   readonly $site: SiteData;
-  readonly $themeConfig: HopeThemeConfig;
+  readonly $themeConfig: ThemeConfig;
   readonly $frontmatter: PageFrontmatter;
   readonly $localeConfig: I18nConfig;
   readonly $siteTitle: string;
