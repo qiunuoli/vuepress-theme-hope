@@ -1,4 +1,5 @@
-import { I18nConfig, ThemeConfig } from "./config";
+import { HopeThemeConfig } from "vuepress-theme-hope";
+import { HopeI18nConfig } from "@mr-hope/vuepress-shared-utils";
 import { SiteData } from "./context";
 import { Page, PageComputed, PageFrontmatter } from "./page";
 
@@ -17,8 +18,8 @@ declare module "vue/types/vue" {
     // context.getSiteData()
     $site: SiteData;
     $siteTitle: string;
-    $themeConfig: ThemeConfig;
-    $themeLocaleConfig: I18nConfig;
+    $themeConfig: HopeThemeConfig;
+    $themeLocaleConfig: HopeI18nConfig;
     $title: string;
 
     // injected in client/app.js
@@ -28,9 +29,9 @@ declare module "vue/types/vue" {
 
 export interface ClientComputedMixin {
   readonly $site: SiteData;
-  readonly $themeConfig: ThemeConfig;
+  readonly $themeConfig: HopeThemeConfig;
   readonly $frontmatter: PageFrontmatter;
-  readonly $localeConfig: I18nConfig;
+  readonly $localeConfig: HopeI18nConfig;
   readonly $siteTitle: string;
   readonly $title: string;
   readonly $description: string;

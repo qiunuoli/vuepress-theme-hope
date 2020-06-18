@@ -4,7 +4,11 @@ import {
   HopeNavBarConfig,
   HopeSideBarConfig,
 } from "@mr-hope/vuepress-shared-utils";
-import { AlgoliaOption, SiteConfig } from "@mr-hope/vuepress-types";
+import {
+  AlgoliaOption,
+  SiteConfig,
+  ThemeConfig,
+} from "@mr-hope/vuepress-types";
 import { MarkdownEnhanceOption } from "vuepress-plugin-md-enhance/types";
 import { PWAOptions } from "@mr-hope/vuepress-plugin-pwa";
 import { SeoOptions } from "@mr-hope/vuepress-plugin-seo";
@@ -265,7 +269,7 @@ export interface ProjectOptions {
 }
 
 /** vuepress-theme-hope 主题配置 */
-export interface HopeThemeConfig {
+export interface HopeThemeConfig extends ThemeConfig {
   /**
    * 导航栏 Logo，应为绝对路径
    *
