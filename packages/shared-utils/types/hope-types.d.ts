@@ -24,8 +24,10 @@ export interface HopeSideBarConfigItemObject extends SideBarConfigItemObject {
   icon?: string;
   /** 当前分组的路径前缀 */
   prefix?: string;
+  /** 通过目录自动生成 */
+  catalog?: boolean;
   /** 当前侧边栏的子项 */
-  children: HopeSideBarConfigItem[];
+  children?: HopeSideBarConfigItem[];
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [props: string]: any;

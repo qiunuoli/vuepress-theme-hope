@@ -19,9 +19,10 @@ export type NavBarConfig = NavBarConfigItem[] | false;
 export interface SideBarConfigItemObject {
   /** 分组的标题 */
   title: string;
-
+  /** 分组的路径 */
+  path?: string;
   /** 当前侧边栏的子项 */
-  children: SideBarConfigItem[];
+  children?: SideBarConfigItem[];
   /** 可折叠，默认为 true */
   collapsable?: boolean;
   /** 侧边栏深度，默认为 1 */
