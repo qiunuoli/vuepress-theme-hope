@@ -1,11 +1,12 @@
 import { describe, it } from "mocha";
 import { HopeVuepressConfig } from "../types";
+import { SiteConfig } from "@mr-hope/vuepress-types";
 import { expect } from "chai";
 import resolveHead from "../lib/resolveHead";
 
 describe("Test resolveHead function", () => {
   it("should generate icon, author and PWA because they do not exist", () => {
-    const config: HopeVuepressConfig = {
+    const config: HopeVuepressConfig & SiteConfig = {
       theme: "hope",
       headOption: {
         icon: "/favicon.ico",
@@ -94,7 +95,7 @@ describe("Test resolveHead function", () => {
   });
 
   it("should not generate icon and author if them exist", () => {
-    const config: HopeVuepressConfig = {
+    const config: HopeVuepressConfig & SiteConfig = {
       theme: "hope",
       head: [
         ["link", { rel: "icon", href: "/icon.ico" }],

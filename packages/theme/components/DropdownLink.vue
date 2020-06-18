@@ -65,13 +65,13 @@
 <script lang='ts'>
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import DropdownTransition from "@theme/components/DropdownTransition.vue";
-import { NavBarConfigItem } from "@theme/util/navbar";
+import { NavBarItem } from "@theme/util/navbar";
 import NavLink from "@theme/components/NavLink.vue";
 
 @Component({ components: { NavLink, DropdownTransition } })
 export default class DropdownLink extends Vue {
   @Prop({ type: Object, required: true })
-  private readonly item!: NavBarConfigItem;
+  private readonly item!: NavBarItem;
 
   private open = false;
 
@@ -94,7 +94,7 @@ export default class DropdownLink extends Vue {
     if (isTriggerByTab) this.setOpen(!this.open);
   }
 
-  private isLastItemOfArray(item: NavBarConfigItem, array: NavBarConfigItem[]) {
+  private isLastItemOfArray(item: NavBarItem, array: NavBarItem[]) {
     if (Array.isArray(array)) return item === array[array.length - 1];
 
     return false;

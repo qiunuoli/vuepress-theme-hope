@@ -11,7 +11,7 @@ import {
   groupSidebarHeaders,
 } from "@theme/util/sidebar";
 import { hashRE, isActive } from "@theme/util/path";
-import { HopeSideBarConfigItemObject } from "@mr-hope/vuepress-shared-utils";
+import { HopeSideBarGroupItem } from "@mr-hope/vuepress-shared-utils";
 import { Route } from "vue-router";
 
 /** 渲染图标 */
@@ -223,7 +223,7 @@ interface SidebarLinkProps {
 } as FunctionalComponentOptions)
 export default class SidebarLink extends Vue {
   @Prop({ type: Object, default: () => ({}) })
-  private readonly item!: HopeSideBarConfigItemObject;
+  private readonly item!: HopeSideBarGroupItem;
 }
 </script>
 

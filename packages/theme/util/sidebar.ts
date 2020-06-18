@@ -1,6 +1,6 @@
 import {
   HopeSideBarConfig,
-  HopeSideBarConfigItem,
+  HopeSideBarItem,
 } from "@mr-hope/vuepress-shared-utils";
 import { PageComputed, SiteData } from "@mr-hope/vuepress-types";
 import {
@@ -33,6 +33,12 @@ export interface SidebarAutoItem {
 
 export const groupSidebarHeaders = groupHeaders;
 
+const getErrorSidebarConfig = (path: string): SidebarErrorItem => {
+  console.warn(`Sidebar: "${path}" has no matching page`);
+
+  return { type: "error", path };
+};
+
 /**
  * 处理侧边栏的分组的标题
  *
@@ -62,8 +68,8 @@ const resolveSidebarHeaders = (page: PageComputed): SidebarAutoItem[] => {
 /** 寻找匹配的侧边栏配置 */
 const resolveMatchingConfig = (
   regularPath: string,
-  config: HopeSideBarConfigItem[] | Record<string, HopeSideBarConfigItem[]>
-): { base: string; config: HopeSideBarConfigItem[] } | false => {
+  config: HopeSideBarItem[] | Record<string, HopeSideBarItem[] | "auto">
+): { base: string; config: HopeSideBarItem[] | "auto" } | false => {
   // 数组意味着最简单的配置方式，直接返回
   if (Array.isArray(config))
     return {
@@ -78,7 +84,7 @@ const resolveMatchingConfig = (
         config: config[base],
       };
 
-  console.warn(`${regularPath} 没有有效的侧边栏配置`);
+  console.warn(`Sidebar: "${regularPath}" has no matching page`);
 
   return false;
 };
@@ -157,11 +163,7 @@ export const resolvePageforSidebar = (
         type: "page",
         path: ensureExt(page.path),
       };
-
-  // 未找到匹配的侧边栏
-  console.error(`Sidebar: "${realPath}" has no matching page`);
-
-  return { type: "error", path: realPath };
+  return getErrorSidebarConfig(realPath);
 };
 
 export type SidebarItem =
@@ -171,8 +173,55 @@ export type SidebarItem =
   | SidebarGroupItem
   | SidebarPageItem;
 
-const resolve = (prefix: string, path: string, base: string): string =>
+const getRealPath = (prefix: string, path: string, base: string): string =>
   resolvePath(`${prefix}${path}`, base);
+
+export interface CatalogItem {
+  path: string;
+  title?: string;
+  description?: string;
+}
+
+export interface RecursiveCatalogItem {
+  title: string;
+  path: string;
+  description?: string;
+  icon?: string;
+  collapsable?: boolean;
+  auto: true;
+}
+
+type CatalogConfig = (CatalogItem | RecursiveCatalogItem | string)[];
+
+const resolveCatalog = (pages: PageComputed[], base: string): SidebarItem[] => {
+  const page = pages.find((page) => page.path === base);
+
+  if (page) {
+    const { catalog } = page.frontmatter;
+
+    if (catalog)
+      return (catalog as CatalogConfig).map((config) =>
+        resolveItem(
+          typeof config === "object"
+            ? "auto" in config && "title" in config
+              ? config
+              : config.path
+            : config,
+          pages,
+          base
+        )
+      );
+
+    console.warn(
+      `Sidebar: "${base}" has no catalog config, sidebar could not be generated.`
+    );
+  } else
+    console.warn(
+      `Sidebar: "${base}" has no matching page, sidebar could not be generated.`
+    );
+
+  return [];
+};
 
 /**
  * 处理侧边栏项
@@ -182,7 +231,7 @@ const resolve = (prefix: string, path: string, base: string): string =>
  * @param base 路径基
  */
 const resolveItem = (
-  sidebarConfigItem: HopeSideBarConfigItem,
+  sidebarConfigItem: HopeSideBarItem,
   pages: PageComputed[],
   base: string,
   prefix = ""
@@ -191,18 +240,39 @@ const resolveItem = (
   if (typeof sidebarConfigItem === "string")
     return resolvePageforSidebar(
       pages,
-      resolve(prefix, sidebarConfigItem, base)
+      getRealPath(prefix, sidebarConfigItem, base)
     );
 
-  // 自定义标题，格式为 ['路径', '自定义标题']
-  if (Array.isArray(sidebarConfigItem))
-    // 需要覆盖标题
-    return Object.assign(
-      resolvePageforSidebar(pages, resolve(prefix, sidebarConfigItem[0], base)),
-      {
-        title: sidebarConfigItem[1],
-      }
-    );
+  if (sidebarConfigItem.auto && sidebarConfigItem.path) {
+    const path = getRealPath(prefix, sidebarConfigItem.path, base);
+    const page = pages.find((page) => page.path === path);
+
+    if (!page) return getErrorSidebarConfig(path);
+
+    const { catalog } = page.frontmatter;
+
+    if (catalog)
+      return {
+        ...sidebarConfigItem,
+        type: "group",
+        path: sidebarConfigItem.path
+          ? getRealPath(prefix, sidebarConfigItem.path, base)
+          : "",
+        children: (catalog as CatalogConfig).map((config) =>
+          resolveItem(
+            typeof config === "object"
+              ? "auto" in config && "title" in config
+                ? config
+                : config.path
+              : config,
+            pages,
+            base,
+            `${prefix}${sidebarConfigItem.path as string}`
+          )
+        ),
+        collapsable: Boolean(sidebarConfigItem.collapsable),
+      };
+  }
 
   // 对象不存在子项
   const children = sidebarConfigItem.children || [];
@@ -211,7 +281,7 @@ const resolveItem = (
     return Object.assign(
       resolvePageforSidebar(
         pages,
-        resolve(prefix, sidebarConfigItem.path, base)
+        getRealPath(prefix, sidebarConfigItem.path, base)
       ),
       {
         title: sidebarConfigItem.title,
@@ -223,7 +293,7 @@ const resolveItem = (
     ...sidebarConfigItem,
     type: "group",
     path: sidebarConfigItem.path
-      ? resolve(prefix, sidebarConfigItem.path, base)
+      ? getRealPath(prefix, sidebarConfigItem.path, base)
       : "",
     children: children.map((child) =>
       resolveItem(
@@ -254,8 +324,7 @@ export const resolveSidebarItems = (
 
   /** 侧边栏配置 */
   const themeSidebarConfig: HopeSideBarConfig | undefined =
-    (localeConfig.sidebar as HopeSideBarConfig | undefined) ||
-    themeConfig.sidebar;
+    localeConfig.sidebar || themeConfig.sidebar;
 
   // 自动通过当前页面的标题生成
   if (page.frontmatter.sidebar === "auto" || themeSidebarConfig === "auto")
@@ -267,6 +336,8 @@ export const resolveSidebarItems = (
   const result = resolveMatchingConfig(page.regularPath, themeSidebarConfig);
 
   return result
-    ? result.config.map((item) => resolveItem(item, pages, result.base))
+    ? result.config === "auto"
+      ? resolveCatalog(pages, result.base)
+      : result.config.map((item) => resolveItem(item, pages, result.base))
     : [];
 };

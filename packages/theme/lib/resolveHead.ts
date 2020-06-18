@@ -1,5 +1,5 @@
+import { HeadItem, SiteConfig } from "@mr-hope/vuepress-types";
 import { HopeHeadOptionConfig, HopeVuepressConfig } from "../types";
-import { HeadItem } from "@mr-hope/vuepress-types";
 
 /** meta 键名 */
 let metaKeys: string[];
@@ -63,7 +63,7 @@ const setPWA = (headOption: HopeHeadOptionConfig): void => {
  *
  * @param config 项目配置
  */
-const resolveHead = (config: HopeVuepressConfig): void => {
+const resolveHead = (config: SiteConfig & HopeVuepressConfig): void => {
   if (!config.head) config.head = [];
 
   const { headOption = {}, themeConfig } = config;

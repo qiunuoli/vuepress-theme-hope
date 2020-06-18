@@ -1,3 +1,5 @@
+import "./declare";
+
 export interface ReadingTime {
   /** expect reading time */
   minutes: number;
@@ -8,14 +10,4 @@ export interface ReadingTime {
 export interface ReadingTimeOptions {
   /** reading speed (words per minute) */
   wordPerminute?: number;
-}
-
-declare module "@mr-hope/vuepress-types/types/page" {
-  interface PageComputed {
-    readingTime: ReadingTime;
-  }
-
-  interface Page {
-    readingTime: ReadingTime;
-  }
 }

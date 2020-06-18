@@ -1,4 +1,5 @@
 import { ResolvedHopeVuepressConfig } from "../types";
+import { SiteConfig } from "@mr-hope/vuepress-types";
 import { i18n } from "@mr-hope/vuepress-shared-utils";
 
 const { path2lang } = i18n;
@@ -8,7 +9,9 @@ const { path2lang } = i18n;
  *
  * @param {object} config vuepress配置
  */
-const resolveLocales = (config: ResolvedHopeVuepressConfig): void => {
+const resolveLocales = (
+  config: ResolvedHopeVuepressConfig & SiteConfig
+): void => {
   // 确保存在 locales
   if (!config.locales) config.locales = {};
 

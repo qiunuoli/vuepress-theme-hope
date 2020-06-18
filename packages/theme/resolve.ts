@@ -1,4 +1,5 @@
 import { HopeVuepressConfig, ResolvedHopeVuepressConfig } from "./types";
+import { SiteConfig } from "@mr-hope/vuepress-types";
 import { deepAssignReverse } from "@mr-hope/vuepress-shared-utils";
 import defaultConfig from "./lib/defaultConfig";
 import resolveHead from "./lib/resolveHead";
@@ -11,12 +12,12 @@ import resolveThemeConfig from "./lib/resolveThemeConfig";
  * @param config
  */
 const resolveConfig = (
-  config: HopeVuepressConfig
-): ResolvedHopeVuepressConfig => {
+  config: HopeVuepressConfig & SiteConfig
+): ResolvedHopeVuepressConfig & SiteConfig => {
   // 合并默认配置
   deepAssignReverse(defaultConfig, config);
 
-  const resolvedConfig = config as ResolvedHopeVuepressConfig;
+  const resolvedConfig = config as ResolvedHopeVuepressConfig & SiteConfig;
 
   resolveHead(resolvedConfig);
   resolveThemeConfig(resolvedConfig.themeConfig);

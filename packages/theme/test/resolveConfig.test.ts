@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { describe, it } from "mocha";
 import { HopeVuepressConfig } from "../types";
+import { SiteConfig } from "@mr-hope/vuepress-types";
 import { expect } from "chai";
 import resolveConfig = require("../resolve");
 
 describe("Test resolveTheme function", () => {
-  const config: HopeVuepressConfig = {
+  const config: HopeVuepressConfig & SiteConfig = {
     /** 网站标题 */
     title: "vuepress-theme-hope",
 

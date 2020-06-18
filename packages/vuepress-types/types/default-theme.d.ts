@@ -1,5 +1,3 @@
-import { I18nConfig } from "./config";
-
 /** 导航栏配置项 */
 export interface NavBarConfigItem {
   /** 导航栏文字 */
@@ -19,9 +17,10 @@ export type NavBarConfig = NavBarConfigItem[] | false;
 export interface SideBarConfigItemObject {
   /** 分组的标题 */
   title: string;
-
+  /** 分组的路径 */
+  path?: string;
   /** 当前侧边栏的子项 */
-  children: SideBarConfigItem[];
+  children?: SideBarConfigItem[];
   /** 可折叠，默认为 true */
   collapsable?: boolean;
   /** 侧边栏深度，默认为 1 */
@@ -45,7 +44,13 @@ export interface AlgoliaOption {
 }
 
 /** 多语言配置 */
-export interface DefaultThemeLangI18nConfig extends I18nConfig {
+export interface DefaultThemeLangI18nConfig {
+  /** 当前语言代码 */
+  lang?: string;
+  /** 当前语言下的标题 */
+  title?: string;
+  /** 当前语言下的描述 */
+  description?: string;
   /** 当前语言的导航栏链接 */
   nav?: NavBarConfig;
   /** 当前语言的侧边栏配置 */
@@ -64,7 +69,6 @@ export interface DefaultThemeLangI18nConfig extends I18nConfig {
   editLinkText?: string; // 默认为 "Edit this page"
 }
 
-// export interface DefaultThemeConfig extends ThemeConfig {
 export interface DefaultThemeConfig {
   /** 导航栏 Logo，应为绝对路径 */
   logo?: string;

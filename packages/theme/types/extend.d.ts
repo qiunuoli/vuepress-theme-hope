@@ -1,9 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-interface */
 import { HopeThemeConfig } from "./hopeConfig";
+import { HopeI18nConfig } from "@mr-hope/vuepress-shared-utils";
 
 declare module "@mr-hope/vuepress-types" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface ThemeConfig extends HopeThemeConfig {
+    /* nothing more extends */
+  }
+
+  interface I18nConfig extends HopeI18nConfig {
     /* nothing more extends */
   }
 }

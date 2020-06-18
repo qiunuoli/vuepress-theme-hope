@@ -56,9 +56,22 @@ export default class PageFooter extends Vue {
   justify-content space-evenly
   align-items center
   padding 12px 30px
+  margin-left $sidebarWidth
   border-top 1px solid var(--border-color, $borderColor)
   text-align center
   color var(--dark-color, #666)
+
+  // narrow desktop / iPad
+  @media (max-width: $MQNarrow)
+    margin-left $mobileSidebarWidth
+
+  @media (min-width: ($MQMobile + 1px))
+    .theme-container.no-sidebar &
+      margin-left 0
+
+  // wide mobile
+  @media (max-width: $MQMobile)
+    margin-left 0
 
   & > div
     @media (max-width: $MQMobileNarrow)

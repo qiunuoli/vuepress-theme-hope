@@ -30,7 +30,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import {
-  HopeLangI18nConfig,
+  HopeI18nConfig,
   capitalize,
   i18n,
 } from "@mr-hope/vuepress-shared-utils";
@@ -94,7 +94,7 @@ export default class ArticleInfo extends Vue {
 
   private get readtime() {
     const { readingTime } =
-      (this.$themeLocaleConfig as HopeLangI18nConfig) ||
+      (this.$themeLocaleConfig as HopeI18nConfig) ||
       i18n.getDefaultLocale();
 
     return this.article.readingTime.minutes < 1

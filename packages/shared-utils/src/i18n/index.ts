@@ -6,7 +6,7 @@ import {
   localesConfig,
   path2langConfig,
 } from "./config";
-import { HopeLangI18nConfig } from "../../types";
+import { HopeI18nConfig } from "../../types";
 
 const reportStatus: Record<string, boolean> = {};
 
@@ -50,7 +50,7 @@ You can contribute to https://github.com/Mister-Hope/vuepress-theme-hope/blob/ma
  *
  * @param lang
  */
-export const getLocale = (lang: string): HopeLangI18nConfig => {
+export const getLocale = (lang: string): HopeI18nConfig => {
   if (localesConfig[lang]) return localesConfig[lang];
 
   if (!reportStatus[lang]) {
@@ -66,8 +66,7 @@ Note: This warning will be shown only once.`
 };
 
 /** 获得默认多语言配置 */
-export const getDefaultLocale = (): HopeLangI18nConfig =>
-  localesConfig["en-US"];
+export const getDefaultLocale = (): HopeI18nConfig => localesConfig["en-US"];
 
 const i18n = {
   checkLang,

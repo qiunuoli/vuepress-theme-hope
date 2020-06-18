@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
-import { HopeLangI18nConfig, i18n } from "@mr-hope/vuepress-shared-utils";
+import { HopeI18nConfig, i18n } from "@mr-hope/vuepress-shared-utils";
 import { ArticleMixin } from "@theme/util/articleMixin";
 import MediaLinks from "@theme/components/MediaLinks.vue";
 import navigate from "@theme/util/navigate";
@@ -61,7 +61,7 @@ export default class BloggerInfo extends Mixins(ArticleMixin) {
     return Boolean(this.blogConfig.intro);
   }
 
-  private get i18n(): HopeLangI18nConfig["blog"] {
+  private get i18n(): HopeI18nConfig["blog"] {
     return this.$themeLocaleConfig.blog || i18n.getDefaultLocale().blog;
   }
 

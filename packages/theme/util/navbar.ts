@@ -1,14 +1,14 @@
-import { HopeNavBarConfigItem } from "@mr-hope/vuepress-shared-utils";
+import { HopeNavBarItem } from "@mr-hope/vuepress-shared-utils";
 
-export interface NavBarConfigItem extends HopeNavBarConfigItem {
+export interface NavBarItem extends HopeNavBarItem {
   type: "link" | "links";
-  items: NavBarConfigItem[];
+  items: NavBarItem[];
 }
 
 export const resolveNavLinkItem = (
-  navbarLink: NavBarConfigItem,
+  navbarLink: NavBarItem,
   beforeprefix = ""
-): NavBarConfigItem => {
+): NavBarItem => {
   const prefix = beforeprefix + (navbarLink.prefix || "");
 
   const navbarItem = { ...navbarLink };

@@ -1,4 +1,4 @@
-import { HopeLangI18nConfig } from "../../types";
+import { HopeI18nConfig } from "../../types";
 
 export type Langs = "zh-CN" | "en-US";
 
@@ -20,7 +20,7 @@ export const path2langConfig: Record<string, Langs> = {
 };
 
 /** 语言设置 */
-export const localesConfig: Record<string, HopeLangI18nConfig> = {
+export const localesConfig: Record<string, HopeI18nConfig> = {
   "zh-CN": {
     lang: "zh-CN",
     selectText: "选择语言",

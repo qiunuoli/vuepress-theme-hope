@@ -7,14 +7,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { HopeLangI18nConfig, i18n } from "@mr-hope/vuepress-shared-utils";
+import { HopeI18nConfig, i18n } from "@mr-hope/vuepress-shared-utils";
 import TimeIcon from "@mr-hope/vuepress-shared-utils/icons/TimeIcon.vue";
 
 @Component({ components: { TimeIcon } })
 export default class ReadtimeInfo extends Vue {
   private get readtime(): string {
     const { readingTime } =
-      (this.$themeLocaleConfig as HopeLangI18nConfig) ||
+      (this.$themeLocaleConfig as HopeI18nConfig) ||
       i18n.getDefaultLocale();
 
     return this.$page.readingTime.minutes < 1

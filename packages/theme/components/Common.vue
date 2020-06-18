@@ -26,6 +26,8 @@
       </Sidebar>
 
       <slot :sidebar-items="sidebarItems" :headers="headers" />
+
+      <PageFooter />
     </template>
   </div>
 </template>
@@ -40,11 +42,12 @@ import {
 } from "@theme/util/sidebar";
 import GlobalEncryptMixin from "@theme/util/globalEncryptMixin";
 import Navbar from "@theme/components/Navbar.vue";
+import PageFooter from "@theme/components/PageFooter.vue";
 import Password from "@theme/components/Password.vue";
 import { PageHeader } from "@mr-hope/vuepress-types";
 import Sidebar from "@theme/components/Sidebar.vue";
 
-@Component({ components: { Password, Sidebar, Navbar } })
+@Component({ components: { Navbar, PageFooter, Password, Sidebar } })
 export default class Common extends Mixins(GlobalEncryptMixin) {
   @Prop({ type: Boolean, default: true })
   private readonly navbar!: boolean;

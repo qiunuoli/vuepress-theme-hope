@@ -52,6 +52,7 @@ import NextIcon from "@mr-hope/vuepress-shared-utils/icons/NextIcon.vue";
 import PrevIcon from "@mr-hope/vuepress-shared-utils/icons/PrevIcon.vue";
 import { Route } from "vue-router";
 import { resolvePath } from "@theme/util/path";
+import { HopeThemeConfig } from "vuepress-theme-hope";
 
 const getSidebarItems = (items: SidebarItem[], result: SidebarItem[]) => {
   for (const item of items)
@@ -76,7 +77,7 @@ const find = (page: PageComputed, items: SidebarItem[], offset: -1 | 1) => {
 };
 
 interface LinkOptions {
-  themeConfig: ThemeConfig;
+  themeConfig: HopeThemeConfig;
   page: PageComputed;
   route: Route;
   site: SiteData;
@@ -88,7 +89,8 @@ const resolvePageLink = (
   linkType: "prev" | "next",
   { themeConfig, page, route, site, sidebarItems }: LinkOptions
 ) => {
-  const themeLinkConfig = themeConfig[`${linkType}Links`];
+  const themeLinkConfig =
+    themeConfig[`${linkType}Links` as "prevLinks" | "nextLinks"];
   const pageLinkConfig = page.frontmatter[linkType];
 
   if (themeLinkConfig === false || pageLinkConfig === false) return false;
